@@ -10,8 +10,8 @@ class Response extends Model
     use HasFactory;
 
     protected $fillable = [
-        'surveys_id',
-        'users_id',
+        'survey_id',
+        'client_id',
         'value'
     ];
 

@@ -15,8 +15,8 @@ class CreateResponsesTable extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('surveys_id')->constrained();
-            $table->foreignId('clients_id')->constrained();
+            $table->foreignId('surveys_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('clients_id')->constrained()->cascadeOnDelete();
             $table->integer('value');
             $table->timestamps();
         });

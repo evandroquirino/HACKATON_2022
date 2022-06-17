@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Route::apiResource('users', UserController::class);
 //Route::apiResource('users.surveys', SurveyController::class);
-//Route::apiResource('surveys', SurveyController::class);
+Route::apiResource('surveys', SurveyController::class);
 //Route::apiResource('surveys.responses', ResponseController::class);
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('clients.responses', ResponseController::class);

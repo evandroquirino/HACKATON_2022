@@ -61,14 +61,10 @@ class ClientController extends Controller
         return $client;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Client  $client
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Client $client)
     {
-        return $client->delete();
+        $client->delete();
+
+        return response()->json(['message' => 'Client deleted']);
     }
 }

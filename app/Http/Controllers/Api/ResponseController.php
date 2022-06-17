@@ -45,9 +45,9 @@ class ResponseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Response $response)
+    public function show(Client $client, Response $response)
     {
-        //
+        return $response;
     }
 
     /**
@@ -57,19 +57,18 @@ class ResponseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Client $client, Response $response)
     {
-        //
+        $response->update($request->all());
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client, Response $response)
     {
-        //
+        $response->delete();
     }
 }

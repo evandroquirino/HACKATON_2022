@@ -24,10 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::apiResource('users', UserController::class);
-//Route::apiResource('users.surveys', SurveyController::class)->middleware('auth:sanctum');
+
 Route::apiResource('user.surveys', SurveyController::class)->middleware('auth:sanctum');
-Route::apiResource('users.surveys.responses', UserSurveysResponseController::class)->middleware('auth:sanctum');
+Route::apiResource('user.surveys.responses', UserSurveysResponseController::class)->only('index', 'show')->middleware('auth:sanctum');
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('clients.responses', ResponseController::class);
     

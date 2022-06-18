@@ -10,15 +10,18 @@ use Illuminate\Http\Request;
 
 class UserSurveysResponseController extends Controller
 {
-    private $response;
-
-    public function __construct(Response $response)
-    {
-        $this->response = $response;
-    }
-
-    public function index(User $user, Survey $survey, Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(User $user, Survey $survey, Response $response)
     {
         return $user->surveys()->with('responses')->get();
+    }
+
+    public function show(User $user, Survey $survey, Response $response)
+    {
+        return $response;
     }
 }

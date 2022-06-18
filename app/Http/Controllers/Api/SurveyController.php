@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Survey;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
@@ -20,10 +21,9 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        return $this->survey->paginate(10);
-
+        return $user->surveys;
     }
 
     /**
@@ -43,7 +43,7 @@ class SurveyController extends Controller
      * @param Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(Survey $survey)
+    public function show(User $user, Survey $survey)
     {
         return $survey;
     }
@@ -55,9 +55,9 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, Survey $survey)
     {
-        //
+        return $survey->update($request->all());
     }
 
     /**
@@ -66,8 +66,8 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, Survey $survey)
     {
-        //
+        return $survey->delete();
     }
 }

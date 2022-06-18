@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ResponseController;
 use App\Http\Controllers\Api\SurveyController;
+use App\Http\Controllers\Api\UserSurveysResponseController;
 use App\Http\Controllers\Auth\Api\LoginController;
 use App\Http\Controllers\Auth\Api\RegisterController;
 use Illuminate\Http\Request;
@@ -25,13 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Route::apiResource('users', UserController::class);
 //Route::apiResource('users.surveys', SurveyController::class)->middleware('auth:sanctum');
-Route::apiResource('surveys', SurveyController::class);
-//Route::apiResource('surveys.responses', ResponseController::class)->middleware('auth:sanctum');
+Route::apiResource('user.surveys', SurveyController::class)->middleware('auth:sanctum');
+Route::apiResource('users.surveys.responses', UserSurveysResponseController::class)->middleware('auth:sanctum');
 Route::apiResource('clients', ClientController::class);
 Route::apiResource('clients.responses', ResponseController::class);
     
 Route::prefix('auth')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LoginController::class, 'logout']);
+    Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
     Route::post('register', [RegisterController::class, 'register']);
 });

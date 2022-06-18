@@ -17,7 +17,7 @@ class RegisterController extends Controller
 
         if(!$user = $user->create($userData)) abort(500, 'Error creating user');
 
-        $token = $user->createToken($request->email);
+        $token = $user->createToken("auth_token");
 
         return response()->json([
             'data' => [

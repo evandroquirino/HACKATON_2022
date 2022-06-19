@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\ClientsUserSurveysResponseController;
 use App\Http\Controllers\Api\ResponseController;
 use App\Http\Controllers\Api\SurveyController;
+use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\Api\UserSurveysResponseController;
 use App\Http\Controllers\Auth\Api\LoginController;
 use App\Http\Controllers\Auth\Api\RegisterController;
@@ -24,10 +26,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::apiResource('user.surveys', SurveyController::class)->middleware('auth:sanctum');
+Route::apiResource('users', UserController::class)->only('index', 'show');
+Route::apiResource('user.surveys', SurveyController::class)->only('index', 'show');
+Route::apiResource('user.surveys', SurveyController::class)->only('store','update','destroy')->middleware('auth:sanctum');
 Route::apiResource('user.surveys.responses', UserSurveysResponseController::class)->only('index', 'show')->middleware('auth:sanctum');
 Route::apiResource('clients', ClientController::class);
+
+//Route::apiResource('clients.user', ClientsUserSurveysResponseController::class);
+
 Route::apiResource('clients.responses', ResponseController::class);
     
 Route::prefix('auth')->group(function () {

@@ -21,10 +21,17 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
-    {
-        return $user->surveys;
-    }
+    // public function index(User $user)
+    // {
+    //     return $user->surveys;
+    // }
+
+        public function index(User $user, Survey $survey)
+        {
+            
+            $surveys = Survey::where('users_id', $user->id)->get();
+            return response()->json($surveys);
+        }
 
     /**
      * Store a newly created resource in storage.

@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('users', CompanyController::class)->only('index', 'show');
 Route::apiResource('user.surveys', SurveyController::class)->only('index', 'show');
 Route::apiResource('user.surveys', SurveyController::class)->only('store','update','destroy')->middleware('auth:sanctum');
-Route::apiResource('user.surveys.responses', UserSurveysResponseController::class)->only('index', 'show')->middleware('auth:sanctum');
+Route::apiResource('user.surveys.responses', UserSurveysResponseController::class)->only('index', 'show');
 Route::apiResource('clients', ClientController::class);
 
 //Route::apiResource('clients.user', ClientsUserSurveysResponseController::class);

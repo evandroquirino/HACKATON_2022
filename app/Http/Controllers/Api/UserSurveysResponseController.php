@@ -17,7 +17,9 @@ class UserSurveysResponseController extends Controller
      */
     public function index(User $user, Survey $survey, Response $response)
     {
-        return $user->surveys()->with('responses')->get();
+        // return $user->surveys()->with('responses')->get();
+        $surveysResponses = Response::where('survey_id', $survey->id)->get();
+            return response()->json($surveysResponses);
     }
 
     public function show(User $user, Survey $survey, Response $response)

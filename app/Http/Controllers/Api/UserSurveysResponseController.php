@@ -15,14 +15,14 @@ class UserSurveysResponseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user, Survey $survey, Response $response)
+    public function index( Survey $survey, Response $response)
     {
         // return $user->surveys()->with('responses')->get();
         $surveysResponses = Response::where('survey_id', $survey->id)->get();
             return response()->json($surveysResponses);
     }
 
-    public function show(User $user, Survey $survey, Response $response)
+    public function show(Survey $survey, Response $response)
     {
         return $response;
     }

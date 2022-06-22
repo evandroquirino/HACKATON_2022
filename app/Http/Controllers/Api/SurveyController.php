@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 use App\Models\Survey;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,11 +27,11 @@ class SurveyController extends Controller
     //     return $user->surveys;
     // }
 
-        public function index(User $user, Survey $survey)
+        public function index(Survey $survey)
         {
-            
-            $surveys = Survey::where('users_id', $user->id)->get();
-            return response()->json($surveys);
+            return $survey->all();
+            // $surveys = Survey::where('users_id', $user->id)->get();
+            // return response()->json($surveys);
         }
 
     /**
@@ -50,7 +51,7 @@ class SurveyController extends Controller
      * @param Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Survey $survey)
+    public function show(Survey $survey)
     {
         return $survey;
     }
@@ -62,7 +63,7 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, Survey $survey)
+    public function update(Request $request, Survey $survey)
     {
         return $survey->update($request->all());
     }
@@ -73,7 +74,7 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user, Survey $survey)
+    public function destroy(Survey $survey)
     {
         return $survey->delete();
     }

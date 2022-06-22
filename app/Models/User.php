@@ -12,10 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function survey()
-    {
-        return $this->hasMany(Survey::class);
-    }
+    // public function survey()
+    // {
+    //     return $this->hasMany(Survey::class);
+    // }
     /**
      * The attributes that are mass assignable.
      *

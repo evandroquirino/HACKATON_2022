@@ -10,7 +10,7 @@ class Survey extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
+        //'users_id',
         'title',
         'description'
         
@@ -21,8 +21,8 @@ class Survey extends Model
         return $this->hasMany(Response::class);
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 }

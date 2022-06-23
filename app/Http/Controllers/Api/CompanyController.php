@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return $this->company->paginate(10);
+        return $this->company->get();
     }
 
    

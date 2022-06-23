@@ -10,16 +10,9 @@ use Illuminate\Http\Request;
 
 class ClientSurveysController extends Controller
 {
-    // public function index(Client $client, Survey $survey, Response $response)
-    // {
-    //     $surveysResponses = Survey::where('client_id', $client->id)->get();
-    //     return response()->json($surveysResponses);
-    // } 
-    public function index(Client $client,Survey $survey, Response $response)
+    public function index(Client $client, Survey $survey, Response $response)
     {
-        // $surveysResponses = Response::where('client_id', $client->id)->get();
-        // return response()->json($surveysResponses);
-        $surveysResponses = Response::where('client_id', $client->id)->get();
-        return response()->json($surveysResponses);
-    }  
+        $response = $response->where('client_id', $client->id)->get();
+        return response()->json($response);
+    }
 }

@@ -22,7 +22,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return $this->client->paginate(10);
+        return $this->client->get();
     }
 
     /**

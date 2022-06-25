@@ -37,6 +37,7 @@ Route::apiResource('clients', ClientController::class);
 //Route::apiResource('clients.surveys', ClientSurveysController::class)->only('index');
 Route::get('clients/{id}/surveys', [ClientSurveysController::class, 'index']);
 Route::get('clients/{id}/nosurveys', [ClientNoSurveysController::class, 'index']);
+Route::get('responses', [ResponseController::class, 'responses']);
 
 //Route::apiResource('clients.user', ClientsUserSurveysResponseController::class);
 

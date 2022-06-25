@@ -71,4 +71,9 @@ class ResponseController extends Controller
     {
         $response->delete();
     }
+
+    public function responses(Response $response)
+    {
+        return $response->all();
+    }
 }

@@ -38,7 +38,7 @@ class Response extends Model
         return Response::orderBy('responses.updated_at', 'desc')
         ->join('clients', 'clients.id', '=', 'responses.client_id')
         ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
-        ->select('responses.id as id_response', 'clients.name as name_client', 'clients.id as id_client', 'surveys.title as title_survey', 'surveys.id as id_survey', 'responses.value')
+        ->select('surveys.id as id_survey', 'surveys.title as title_survey')
         ->whereNotin('responses.client_id', [$client_id])
         ->get();
     }

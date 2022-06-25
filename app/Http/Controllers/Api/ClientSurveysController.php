@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\DB;
 
 class ClientSurveysController extends Controller
 {
-    public function index(Client $client, Survey $survey, Response $response)
+    public function index($client_id)
     {
-        return Response::orderBy('responses.id', 'desc')
-        ->join('clients', 'clients.id', '=', 'responses.client_id')
-        ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
-        ->select('responses.id as response_id', 'clients.name as name_client', 'clients.id as client_id', 'surveys.title as title_survey', 'surveys.id as id_survey', 'responses.value')
-        ->where('responses.client_id', $client->id)
-        ->get();
+        $surveys = Response::readRespostaPesquisa($client_id);
+
+        return response()->json($surveys);
+        ///////
+        // SELECT responses.id as id_response, clients.name as name_client, clients.id as id_client, surveys.title as title_survey, surveys.id as id_survey, responses.value 
+        // FROM responses 
+        // JOIN clients ON clients.id = responses.client_id 
+        // JOIN surveys ON surveys.id = responses.survey_id 
+        // WHERE responses.client_id = 6
     }
 }

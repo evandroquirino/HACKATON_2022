@@ -25,21 +25,44 @@ class Response extends Model
         return $this->belongsTo(Survey::class);
     }
 
-    public static function readRespostaPesquisa($client_id) {
+    public static function readResponseSurvey($client_id) {
         return Response::orderBy('responses.updated_at', 'desc')
         ->join('clients', 'clients.id', '=', 'responses.client_id')
         ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
-        ->select('responses.id as id_response', 'clients.name as name_client', 'clients.id as id_client', 'surveys.title as title_survey', 'surveys.id as id_survey', 'responses.value')
+        ->select(
+                'clients.id as id_client',
+                'clients.name as name_client', 
+                'surveys.id as id_survey', 
+                'surveys.title as title_survey',
+                'surveys.description as description_survey', 
+                'responses.id as id_response',
+                'responses.value')
         ->where('responses.client_id', $client_id)
         ->get();
     }
 
-    public static function NoreadRespostaPesquisa($client_id) {
-        return Response::orderBy('responses.updated_at', 'desc')
-        ->join('clients', 'clients.id', '=', 'responses.client_id')
-        ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
-        ->select('surveys.id as id_survey', 'surveys.title as title_survey')
-        ->whereNotin('responses.client_id', [$client_id])
-        ->get();
-    }
+    public static function NoreadResponseSurveys($client_id) {
+        // return Response::orderBy('responses.client_id', 'desc')
+        // ->join('clients', 'clients.id', '=', 'responses.client_id')
+        // ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
+        // ->select('clients.id as id_client','surveys.id as id_survey', 'surveys.title as title_survey')
+        // ->whereNotin('responses.client_id', [$client_id])
+        // ->get();
+        
+        
+        // return Survey::orderBy('surveys.updated_at', 'desc')
+        // ->join('responses', 'responses.survey_id', '=', 'surveys.id')
+        // ->join('clients', 'clients.id', '=', 'responses.client_id')
+        // ->select('clients.id as id_client','surveys.id as id_survey', 'surveys.title as title_survey', 'surveys.description as description_survey')
+        // ->whereNotin('responses.client_id', [$client_id])
+        // ->get();
+        // ;}
+        
+            return Response::orderBy('responses.updated_at', 'desc')
+            ->join('clients', 'clients.id', '=', 'responses.client_id')
+            ->join('surveys', 'surveys.id', '!=', 'responses.survey_id')
+            ->select( 'surveys.id as id_survey', 'surveys.title as title_survey', 'surveys.description as description_survey')
+            ->where('responses.client_id', [$client_id])
+            ->get();
+        }
 }

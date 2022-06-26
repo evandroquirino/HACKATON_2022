@@ -22,16 +22,11 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index(User $user)
-    // {
-    //     return $user->surveys;
-    // }
 
         public function index(Survey $survey)
         {
             return $survey->all();
-            // $surveys = Survey::where('users_id', $user->id)->get();
-            // return response()->json($surveys);
+
         }
 
     /**

@@ -13,7 +13,7 @@ class ClientSurveysController extends Controller
 {
     public function index($client_id)
     {
-        $surveys = Response::readRespostaPesquisa($client_id);
+        $surveys = Response::readResponseSurvey($client_id);
 
         return response()->json($surveys);
         ///////

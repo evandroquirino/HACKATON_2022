@@ -47,12 +47,14 @@ class Response extends Model
             ->join('clients', 'clients.id', '=', 'responses.client_id')
             ->join('surveys', 'surveys.id', '=', 'responses.survey_id')
             ->select( 
-                    'clients.id as id_client',
                     'surveys.id as id_survey', 
                     'surveys.title as title_survey', 
                     'surveys.description as description_survey'
                     )
             ->whereNotin('responses.client_id', [$client_id])
+            //->orWhere('surveys.id', '=', '26')
             ->get();
+
+            
         }
 }
